@@ -1,11 +1,11 @@
 import bardapi
 import os
 
-SECRETKEY = ""
+BARD_SECRET_KEY = os.getenv('BARD_SECRET_KEY')
 
 
 def bard(returnString):
-    os.environ['_BARD_API_KEY'] = SECRETKEY
+    os.environ['_BARD_API_KEY'] = BARD_SECRET_KEY
 
     # 바드 대답
     response = bardapi.core.Bard().get_answer(returnString)
