@@ -64,4 +64,25 @@ class MyView(View):
         if job == '':
             jobString = ""
         else:
-            jobString = 
+            jobString = f"{job}을 직업으로 하고 있어."
+
+        # 사용자 세부 정보로 String 생성 --> bard 모델 튜닝하여 적절한 String의 형태로 구성
+        userDetailString = f"내가 {age}이고 {gender}이고 {job}을 직업으로 하고있어.{diseaseString}{hobbyString}{medicineString}{surgeryString}{jobString}"
+
+        # totalRequest: 사용자 세부 정보와 사용자 입력 질문을 모두 합친 String
+        totalRequest = f'{userDetailString} {userText}'
+        # bardResponse: totalRequest를 사용하여 bard api로 받아온 답변 String
+        bardResponse = models.bard(totalRequest)
+
+        # Spring에 보낼 채팅 저장을 위한 JSON
+        data = {
+            'requestText': userText,
+            'responseText': bardResponse
+        }
+        # Spring으로 정해진 엔드포인트로 데이터 전송 --> data를 받은 Spring은 DB에 저장
+        chatSave = requests.post(f'{BASE_URL}/chat/{id}', json=data)
+        # 확인
+        print(chatSave)
+
+        # 프론트에는 출력 해야할 bardResponse String을 반환
+        return HttpResponse(bardResponse)
