@@ -3,7 +3,8 @@ import os
 
 # Github Secret에 환경 변수로 저장
 # BARD_SECRET_KEY = os.getenv('BARD_SECRET_KEY')
-BARD_SECRET_KEY = "dwi_KJehFLvhIV4bTJeH1ucEuXxZgomgr4aWRCK7o31cRSKwigDsWSd0ScnJUfLta1LbCQ."
+# 정식 KEY가 아니여서 10~15분에 한 번씩 변경되기 때문에 공개해도 괜찮다고 판단했습니다.
+BARD_SECRET_KEY = "dwi_KFY6df1dTNFOnt9_GhRztEE3U2h2UTiCKh3r7ZwFpBIcNuYTub4Xf6D0ypH_0gAqZA."
 
 
 def bard(returnString):
